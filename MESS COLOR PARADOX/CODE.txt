@@ -1,0 +1,635 @@
+#include <Servo.h>
+   
+    int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, val = 0, i = 0,yes=0,no=0;
+     int count = 0; 
+  int count1 = 0;
+ 
+Servo Servo1;
+Servo Servo2;
+
+int ir1 = 7;
+int ir2 = 4;
+int sm1 = 10;
+int sm2 = 9; 
+
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(ir1, INPUT);
+    pinMode(ir2, INPUT);
+    pinMode(13, INPUT);
+    pinMode(11, INPUT);
+
+  Servo1.attach(sm1); 
+  Servo2.attach(sm2); 
+}
+
+void loop() {
+ 
+Serial.println("Game started");
+  int yes, no,val1,val2,val3,val4,val5,val6;
+  int vallcall;
+  int yn;
+  servomotor1Rotate1();
+  yn=irInput(yn);
+    val1=yesNochecking(yn);
+    servomotor1Rotate2();
+      yn=irInput(yn);
+    val2=yesNochecking2(yn);
+    servomotor1Rotate3();
+      yn=irInput(yn);
+    val3=yesNochecking3(yn);
+    servomotor1Rotate4();
+      yn=irInput(yn);
+    val4=yesNochecking4(yn);
+    servomotor1Rotate5();
+      yn=irInput(yn);
+    val5=yesNochecking5(yn);
+  
+ val = ((val1 * 10000) + (val2 * 1000) + (val3 * 100) + (val4 * 10) + (val5));
+        Serial.println("processing a,b,c,d,e values");
+        Serial.println(val);
+        
+
+if(val==1100)
+{
+    
+    Servo2.write(0);
+    delay(1500);
+    Servo2.write(10);
+    Serial.println("GOLD");
+    Serial.println(val);
+
+    delay(1500);
+}
+
+if(val==1000)
+{
+     
+     Servo2.write(0);
+     delay(1500);
+     Servo2.write(25);
+     Serial.println("BROWN");
+     Serial.println(val);
+
+     delay(1500);
+
+}
+if(val==11)
+{
+     
+     Servo2.write(0);
+     delay(1500);
+     Servo2.write(42);
+     Serial.println("DARK GREEN");
+     Serial.println(val);
+
+     delay(1500);
+
+}
+if(val==11110)
+{
+     
+     Servo2.write(0);
+     delay(1500);
+     Servo2.write(62);
+     Serial.println("DARK BLUE");
+     Serial.println(val);
+
+     delay(1500);
+}
+if(val==10)
+{
+     
+     Servo2.write(0);
+     delay(1500);
+     Servo2.write(77);
+     Serial.println("SKIN");
+     Serial.println(val);
+
+     delay(1500);
+
+}
+if(val==11011)
+{
+     
+     Servo2.write(0);
+     delay(1500);
+     Servo2.write(100);
+     Serial.println("WHITE");
+     Serial.println(val);
+
+     delay(1500);
+
+}
+if(val==111)
+{
+     
+     Servo2.write(0);
+     delay(1500);
+     Servo2.write(120);
+     Serial.println("RED");
+     Serial.println(val);
+
+     delay(1500);
+
+}
+if(val==10001)
+{
+     
+     Servo2.write(0);
+     delay(1500);
+     Servo2.write(135);
+     Serial.println("LIGHT GREEN");
+     Serial.println(val);
+
+     delay(1500);
+
+}
+if(val==11100)
+{
+     
+     Servo2.write(0);
+     delay(1500);
+     Servo2.write(150);
+     Serial.println("PINK");
+     Serial.println(val);
+
+     delay(1500);
+
+}
+if(val==10101)
+{
+     
+     Servo2.write(0);
+     delay(1500);
+     Servo2.write(170);
+     Serial.println("YELLOW");
+     Serial.println(val);
+
+     delay(1500);
+
+
+}
+for(;;){
+Serial.println("Game Over");
+}
+
+}
+void servomotor1Rotate1()
+{
+ Servo1.write(0);                   // Set the servo position according to the mapped value
+  delay(1500);                              // Wait for the servo to reach the position
+  Servo1.write(80);
+  delay(2000);  
+}
+void servomotor1Rotate2()
+{
+ Servo1.write(0);                   // Set the servo position according to the mapped value
+  delay(1500);                              // Wait for the servo to reach the position
+  Servo1.write(100);
+  delay(2000);  
+}
+void servomotor1Rotate3()
+{
+ Servo1.write(0);                   // Set the servo position according to the mapped value
+  delay(1500);                              // Wait for the servo to reach the position
+  Servo1.write(120);
+  delay(2000);  
+}
+void servomotor1Rotate4()
+{
+ Servo1.write(0);                   // Set the servo position according to the mapped value
+  delay(1500);                              // Wait for the servo to reach the position
+  Servo1.write(140);
+  delay(2000);  
+}
+void servomotor1Rotate5()
+{
+ Servo1.write(0);                   // Set the servo position according to the mapped value
+  delay(1500);                              // Wait for the servo to reach the position
+  Servo1.write(160);
+  delay(2000);  
+}
+int irInput(int yn)
+{  
+ 
+  
+    Serial.println("Ir yes sensor taking input");
+  yes = digitalRead(ir1);
+  delay(1000);
+
+    Serial.println("Ir no sensor taking input");
+  no = digitalRead(ir2);
+  delay(1000);
+   
+  
+return yes;
+
+  
+  
+}
+int yesNochecking(int yes)
+{
+Serial.println("Checking yes or no condition");
+    if (yes == 1) {
+      count = count + 1;
+      Serial.println("Count incremented");
+      Serial.println(count);
+      if (count == 1) {
+        a = 1;
+              Serial.println("a value initialized with 1");
+              return a;
+
+      }
+      if (count == 2) {
+        b = 1;
+Serial.println("b value initialized with 1");
+              return b;
+
+      }
+      if (count == 3) {
+        c = 1;
+        Serial.println("c value initialized with 1");
+                      return c;
+
+      }
+      if (count == 4) {
+        d = 1;
+        Serial.println("d value initialized with 1");
+                      return d;
+
+      }
+      if (count == 5) {
+        e = 1;
+        Serial.println("e value initialized with 1");
+                      return e;
+
+      }
+   
+      
+    }
+  
+    if (no == 1) {
+      count1 = count1 + 1;
+      
+      Serial.println("Count1 incremented");
+      Serial.println(count1);
+      Servo1.write(10);
+      if (count1 == 1) {
+        a = 0;
+        Serial.println("a1 value initialized with 0");
+        return a;
+      }
+      if (count1 == 2) {
+        b = 0;
+                Serial.println("b1 value initialized with 0");
+        return b;
+
+      }
+      if (count1 == 3) {
+        c = 0;
+                Serial.println("c1 value initialized with 0");
+        return c;
+
+      }
+      if (count1 == 4) {
+        d = 0;
+                Serial.println("d1 value initialized with 0");
+        return d;
+
+      }
+      if (count1 == 5) {
+        e = 0;
+                Serial.println("e1 value initialized with 0");
+                        return e;
+
+
+      }
+     
+    }
+}
+int yesNochecking2(int yes)
+{
+Serial.println("Checking yes or no condition");
+    if (yes == 1) {
+      count = count + 1;
+      Serial.println("Count incremented");
+      Serial.println(count);
+      Servo1.write(10);
+      if (count == 1) {
+        a = 1;
+              Serial.println("a value initialized with 1");
+              return a;
+
+      }
+      if (count == 2) {
+        b = 1;
+Serial.println("b value initialized with 1");
+              return b;
+
+      }
+      if (count == 3) {
+        c = 1;
+        Serial.println("c value initialized with 1");
+                      return c;
+
+      }
+      if (count == 4) {
+        d = 1;
+        Serial.println("d value initialized with 1");
+                      return d;
+
+      }
+      if (count == 5) {
+        e = 1;
+        Serial.println("e value initialized with 1");
+                      return e;
+
+      }
+   
+      
+    }
+  
+    if (no == 1) {
+      count1 = count1 + 1;
+      
+      Serial.println("Count1 incremented");
+      Serial.println(count1);
+      Servo1.write(10);
+      if (count1 == 1) {
+        a = 0;
+        Serial.println("a1 value initialized with 0");
+        return a;
+      }
+      if (count1 == 2) {
+        b = 0;
+                Serial.println("b1 value initialized with 0");
+        return b;
+
+      }
+      if (count1 == 3) {
+        c = 0;
+                Serial.println("c1 value initialized with 0");
+        return c;
+
+      }
+      if (count1 == 4) {
+        d = 0;
+                Serial.println("d1 value initialized with 0");
+        return d;
+
+      }
+      if (count1 == 5) {
+        e = 0;
+                Serial.println("e1 value initialized with 0");
+                        return e;
+
+
+      }
+     
+    }
+}
+int yesNochecking3(int yes)
+{
+Serial.println("Checking yes or no condition");
+    if (yes == 1) {
+      count = count + 1;
+      Serial.println("Count incremented");
+      Serial.println(count);
+      Servo1.write(10);
+      if (count == 1) {
+        a = 1;
+              Serial.println("a value initialized with 1");
+              return a;
+
+      }
+      if (count == 2) {
+        b = 1;
+Serial.println("b value initialized with 1");
+              return b;
+
+      }
+      if (count == 3) {
+        c = 1;
+        Serial.println("c value initialized with 1");
+                      return c;
+
+      }
+      if (count == 4) {
+        d = 1;
+        Serial.println("d value initialized with 1");
+                      return d;
+
+      }
+      if (count == 5) {
+        e = 1;
+        Serial.println("e value initialized with 1");
+                      return e;
+
+      }
+   
+      
+    }
+  
+    if (no == 1) {
+      count1 = count1 + 1;
+      
+      Serial.println("Count1 incremented");
+      Serial.println(count1);
+      Servo1.write(10);
+      if (count1 == 1) {
+        a = 0;
+        Serial.println("a1 value initialized with 0");
+        return a;
+      }
+      if (count1 == 2) {
+        b = 0;
+                Serial.println("b1 value initialized with 0");
+        return b;
+
+      }
+      if (count1 == 3) {
+        c = 0;
+                Serial.println("c1 value initialized with 0");
+        return c;
+
+      }
+      if (count1 == 4) {
+        d = 0;
+                Serial.println("d1 value initialized with 0");
+        return d;
+
+      }
+      if (count1 == 5) {
+        e = 0;
+                Serial.println("e1 value initialized with 0");
+                        return e;
+
+
+      }
+     
+    }
+}
+int yesNochecking4(int yes)
+{
+Serial.println("Checking yes or no condition");
+    if (yes == 1) {
+      count = count + 1;
+      Serial.println("Count incremented");
+      Serial.println(count);
+      Servo1.write(10);
+      if (count == 1) {
+        a = 1;
+              Serial.println("a value initialized with 1");
+              return a;
+
+      }
+      if (count == 2) {
+        b = 1;
+Serial.println("b value initialized with 1");
+              return b;
+
+      }
+      if (count == 3) {
+        c = 1;
+        Serial.println("c value initialized with 1");
+                      return c;
+
+      }
+      if (count == 4) {
+        d = 1;
+        Serial.println("d value initialized with 1");
+                      return d;
+
+      }
+      if (count == 5) {
+        e = 1;
+        Serial.println("e value initialized with 1");
+                      return e;
+
+      }
+   
+      
+    }
+  
+    if (no == 1) {
+      count1 = count1 + 1;
+      
+      Serial.println("Count1 incremented");
+      Serial.println(count1);
+      Servo1.write(10);
+      if (count1 == 1) {
+        a = 0;
+        Serial.println("a1 value initialized with 0");
+        return a;
+      }
+      if (count1 == 2) {
+        b = 0;
+                Serial.println("b1 value initialized with 0");
+        return b;
+
+      }
+      if (count1 == 3) {
+        c = 0;
+                Serial.println("c1 value initialized with 0");
+        return c;
+
+      }
+      if (count1 == 4) {
+        d = 0;
+                Serial.println("d1 value initialized with 0");
+        return d;
+
+      }
+      if (count1 == 5) {
+        e = 0;
+                Serial.println("e1 value initialized with 0");
+                        return e;
+
+
+      }
+     
+    }
+}
+int yesNochecking5(int yes)
+{
+Serial.println("Checking yes or no condition");
+    if (yes == 1) {
+      count = count + 1;
+      Serial.println("Count incremented");
+      Serial.println(count);
+      Servo1.write(10);
+      if (count == 1) {
+        a = 1;
+              Serial.println("a value initialized with 1");
+              return a;
+
+      }
+      if (count == 2) {
+        b = 1;
+Serial.println("b value initialized with 1");
+              return b;
+
+      }
+      if (count == 3) {
+        c = 1;
+        Serial.println("c value initialized with 1");
+                      return c;
+
+      }
+      if (count == 4) {
+        d = 1;
+        Serial.println("d value initialized with 1");
+                      return d;
+
+      }
+      if (count == 5) {
+        e = 1;
+        Serial.println("e value initialized with 1");
+                      return e;
+
+      }
+   
+      
+    }
+  
+    if (no == 1) {
+      count1 = count1 + 1;
+      
+      Serial.println("Count1 incremented");
+      Serial.println(count1);
+      Servo1.write(10);
+      if (count1 == 1) {
+        a = 0;
+        Serial.println("a1 value initialized with 0");
+        return a;
+      }
+      if (count1 == 2) {
+        b = 0;
+                Serial.println("b1 value initialized with 0");
+        return b;
+
+      }
+      if (count1 == 3) {
+        c = 0;
+                Serial.println("c1 value initialized with 0");
+        return c;
+
+      }
+      if (count1 == 4) {
+        d = 0;
+                Serial.println("d1 value initialized with 0");
+        return d;
+
+      }
+      if (count1 == 5) {
+        e = 0;
+                Serial.println("e1 value initialized with 0");
+                        return e;
+
+
+      }
+     
+    }
+}
